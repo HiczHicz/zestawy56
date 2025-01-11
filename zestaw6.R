@@ -12,7 +12,7 @@ mean(dane$wzrost)
 #172.2
 
 #ODCHYLENIE STANDARDOWE POLICZYC RECZNIE BO R COS INACZEJ
-odchyl_wzrost=sqrt(1/n*sum((wzrost-śr_wzrost)^2))
+odchyl_wzrost=sqrt((1/n)*sum((wzrost-śr_wzrost)^2))
 #16.1088
 
 #a WAGA
@@ -34,8 +34,8 @@ kow=1/n*sum((wzrost-śr_wzrost)*(waga-śr_waga))
 kow
 #230.9733
 #ewentualnie
-cov(Wzrost,Waga) #wyznaczana z mianownikiem n-1
-1/(n-1)*sum((Wzrost-śr_wzrost)*(Waga-śr_waga))
+cov(wzrost,waga) #wyznaczana z mianownikiem n-1
+1/(n-1)*sum((wzrost-śr_wzrost)*(waga-śr_waga))
 
 
 #wsp korelacji
@@ -51,7 +51,7 @@ cor(wzrost,waga)
 
 #wykres korelacyjny wagi od wzrostu (raczej waga od wzrostu zależy)
 
-plot(wzrost,waga,lwd=3)
+plot(wzrost,waga,lwd=1)
 
 #wyznaczmy współczynniki w regresji linowej
 A=kor*odchyl_waga/odchyl_wzrost
@@ -63,6 +63,6 @@ B
 
 #nanieśmy linię regresji na wykres korelacyjny
 #wykorzytamy funkcję points() - połączymy odpowiednie punkty
-plot(wzrost,waga,lwd=3)
+plot(wzrost,waga,lwd=2, ch=1, xlab="Wzrost [cm]", ylab="Waga [kg]", main="Wykres korelacyjny wagi od wzrostu")
 points(c(min(wzrost),max(wzrost)),
-       c(A*min(wzrost)+B,A*max(wzrost)+B),type="l",col="blue")
+       c(A*min(wzrost)+B,A*max(wzrost)+B),type="l",col="darkcyan", lwd=2)
